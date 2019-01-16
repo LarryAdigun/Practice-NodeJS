@@ -67,3 +67,33 @@ var server = http.createServer(function(req,res){
 
 server.listen(3000, "127.0.0.1");
 console.log("yo dawgs");
+
+//Video 17-Sending along HTML
+
+var http = require("http")
+var fs = require("fs")
+var server = http.createServer(function(req,res){
+    res.writeHead(200, {"Content-Type": "text/html"});
+    var myReadStream = fs.createReadStream(__dirname + '/index.html', "utf8");
+    myReadStream.pipe(res);
+
+});
+
+server.listen(3000, "127.0.0.1");
+console.log("yo dawgs");
+
+//Video 18- Sending JSON to the client
+var http = require("http")
+var fs = require("fs")
+var server = http.createServer(function(req,res){
+    res.writeHead(200, {"Content-Type": "application/json"});
+    var myObj = {
+      name: "RYU",
+      job: "ninja",
+      age: 29
+    };
+    res.end(JSON.stringify(myObj))
+});
+
+server.listen(3000, "127.0.0.1");
+console.log("yo dawgs");
