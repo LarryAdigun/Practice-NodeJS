@@ -38,4 +38,32 @@ myReadStream.on("data", function(chunk) {
   console.log(chunk)
 })
 
-//video 15
+//video 15- Writing data that you have written
+// var http = require ("http");
+// var fs = require ("fs");
+// var myReadStream = fs.createReadStream(__dirname + '/readMe.txt', "utf8");
+// var myWriteStream = fs.createWriteStream(__dirname + '/writeMe.txt', "utf8")
+//
+// myReadStream.on("data", function(chunk) {
+//   console.log("new chunk received")
+//   myWriteStream.write(chunk)
+// })
+
+//video 16- Pipe-Takes data from a read stream and pipe it into a write stream. Instead of manually listening the pipe does it for you. Better for performance than reading the whole file and sending it
+var http = require ("http");
+var fs = require ("fs");
+// var myReadStream = fs.createReadStream(__dirname + '/readMe.txt', "utf8");
+// var myWriteStream = fs.createWriteStream(__dirname + '/writeMe.txt', "utf8")
+//
+// myReadStream.pipe(myWriteStream);
+
+var http = require("http")
+var server = http.createServer(function(req,res){
+    res.writeHead(200, {"Content-Type": "text/plain"});
+    var myReadStream = fs.createReadStream(__dirname + '/readMe.txt', "utf8");
+    myReadStream.pipe(res);
+
+});
+
+server.listen(3000, "127.0.0.1");
+console.log("yo dawgs");
