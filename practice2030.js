@@ -139,3 +139,32 @@ app.get("/profile/:name", function(req,res){
 });
 
 app.listen(3000);
+
+//video 29-Query String-additional dating added onto a hhtp request in the form of name value pairs
+//parse the request and
+var express = require("express");
+
+var app = express();
+
+app.set("view engine", "ejs");
+//middle for css, use next to go onto a another middleware
+//function built into express is static
+app.use("/assets", express.static("assets"));
+
+
+
+app.get("/", function(req,res){
+  res.render("index")
+});
+
+app.get("/contact", function(req,res){
+  res.render("contact", {qs: req.Query});
+});
+//use to output data from a js file, check html
+app.get("/profile/:name", function(req,res){
+  var data = {age: 29, job: "ninja", hobbies: ["eating","fighting","walking"]};
+
+  res.render("profile", {person: req.params.name, data: data});
+});
+
+app.listen(3000);
