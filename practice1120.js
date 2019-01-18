@@ -1,10 +1,10 @@
 //video 11- come back to video 11!
 
 //video 12- Didn't work well
-var http = require("http")
+var http = require("http");
 var server = http.createServer(function(req,res){
     res.writeHead(200, {"Content-Type": "text/plain"});
-    res.end("Hey Ninjas")
+    res.end("Hey Ninjas");
 });
 
 server.listen(3000, "127.0.0.1");
@@ -12,10 +12,10 @@ console.log("yo dawgs");
 
 //Video 12
 
-var http = require("http")
+var http = require("http");
 var server = http.createServer(function(req,res){
     res.writeHead(200, {"Content-Type": "text/plain"});
-    res.end("Hey Ninjas")
+    res.end("Hey Ninjas");
 });
 
 server.listen(3000, "127.0.0.1");
@@ -34,9 +34,9 @@ var fs = require ("fs");
 var myReadStream = fs.createReadStream(__dirname + '/readMe.txt', "utf8");
 
 myReadStream.on("data", function(chunk) {
-  console.log("new chunk received")
-  console.log(chunk)
-})
+  console.log("new chunk received");
+  console.log(chunk);
+});
 
 //video 15- Writing data that you have written
 // var http = require ("http");
@@ -57,7 +57,7 @@ var fs = require ("fs");
 //
 // myReadStream.pipe(myWriteStream);
 
-var http = require("http")
+var http = require("http");
 var server = http.createServer(function(req,res){
     res.writeHead(200, {"Content-Type": "text/plain"});
     var myReadStream = fs.createReadStream(__dirname + '/readMe.txt', "utf8");
@@ -70,8 +70,8 @@ console.log("yo dawgs");
 
 //Video 17-Sending along HTML
 
-var http = require("http")
-var fs = require("fs")
+var http = require("http");
+var fs = require("fs");
 var server = http.createServer(function(req,res){
     res.writeHead(200, {"Content-Type": "text/html"});
     var myReadStream = fs.createReadStream(__dirname + '/index.html', "utf8");
@@ -83,8 +83,8 @@ server.listen(3000, "127.0.0.1");
 console.log("yo dawgs");
 
 //Video 18- Sending JSON to the client
-var http = require("http")
-var fs = require("fs")
+var http = require("http");
+var fs = require("fs");
 var server = http.createServer(function(req,res){
     res.writeHead(200, {"Content-Type": "application/json"});
     var myObj = {
@@ -92,15 +92,15 @@ var server = http.createServer(function(req,res){
       job: "ninja",
       age: 29
     };
-    res.end(JSON.stringify(myObj))
+    res.end(JSON.stringify(myObj));
 });
 
 server.listen(3000, "127.0.0.1");
 console.log("yo dawgs");
 
 // video 19- Creating routing to your page
-var http = require("http")
-var fs = require("fs")
+var http = require("http");
+var fs = require("fs");
 
 var server = http.createServer(function(req,res){
   console.log("request was made:" + req.url);
@@ -111,9 +111,9 @@ var server = http.createServer(function(req,res){
       res.writeHead(200, {"Content-Type": "text/html"});
       fs.createReadStream(__dirname + "/contact.html").pipe(res);
     }else if(req.url === "/api/ninjas") {
-      var ninjas = [{name: "ryu", age: 29}, {name: "yoshi", age: 32}]
+      var ninjas = [{name: "ryu", age: 29}, {name: "yoshi", age: 32}];
       res.writeHead(200, {"Content-Type": "application/json"});
-      res.end(JSON.stringify(ninjas))
+      res.end(JSON.stringify(ninjas));
     }else {
       res.writeHead(404, {"Content-Type": "text/html"});
       fs.createReadStream(__dirname + "/404.html").pipe(res);
