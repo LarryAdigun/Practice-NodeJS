@@ -168,3 +168,41 @@ app.get("/profile/:name", function(req,res){
 });
 
 app.listen(3000);
+//video 30
+//Post is a request method, post request aske the server to accept /store data which is enclosed in the request
+//often used when submitting forms
+var express = require("express");
+var bodyParser = require("body-parser");
+var app = express();
+
+//Parse our post data
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+app.set("view engine", "ejs");
+//middle for css, use next to go onto a another middleware
+//function built into express is static
+app.use("/assets", express.static("assets"));
+
+
+
+app.get("/", function(req,res){
+  res.render("index")
+});
+
+app.get("/contact", function(req,res){
+  res.render("contact", {data: req.body});
+});
+
+app.post("/contact", urlencodedParser, function(req,res){
+  console.log(req.body);
+  res.render("contact-success", {data: req.body});
+});
+
+//use to output data from a js file, check html
+app.get("/profile/:name", function(req,res){
+  var data = {age: 29, job: "ninja", hobbies: ["eating","fighting","walking"]};
+
+  res.render("profile", {person: req.params.name, data: data});
+});
+
+app.listen(3000);
